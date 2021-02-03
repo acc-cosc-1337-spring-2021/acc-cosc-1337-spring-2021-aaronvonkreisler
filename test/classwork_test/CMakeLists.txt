@@ -1,6 +1,6 @@
 ADD_SUBDIRECTORY(01_assign_test)
-ADD_SUBDIRECTORY(02_assign_test)
-ADD_SUBDIRECTORY(03_assign_test)
+#ADD_SUBDIRECTORY(02_assign_test)
+#ADD_SUBDIRECTORY(03_assign_test)
 #ADD_SUBDIRECTORY(04_assign_test)
 #ADD_SUBDIRECTORY(05_assign_test)
 #ADD_SUBDIRECTORY(06_assign_test)

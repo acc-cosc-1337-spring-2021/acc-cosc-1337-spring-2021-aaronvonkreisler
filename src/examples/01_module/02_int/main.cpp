@@ -1,6 +1,10 @@
+#include <iostream>
+#include "vars.h"
 
-int main() 
+using std::cout;
+
+int main()
 {
-
+	cout << "Value is" << echo_variable(5);
 	return 0;
 }

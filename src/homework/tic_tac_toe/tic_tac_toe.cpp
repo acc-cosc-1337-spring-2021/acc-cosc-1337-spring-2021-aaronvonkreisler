@@ -11,6 +11,35 @@ void Game::clear_board() {
   }
 }
 
+void Game::set_winner(){
+  if (player == "X") {
+    winner = "O";
+  } else {
+    winner = "X";
+  }
+}
+
+bool Game::game_over() {
+
+  bool column_winner = this -> check_column_win();
+  bool row_winner = this -> check_row_win();
+  bool diaganol_winner = this -> check_diagonal_win();
+
+  bool is_full =  this -> check_board_full();
+
+  if (column_winner || row_winner || diaganol_winner) {
+    this -> set_winner();
+    return true;
+  }
+
+  if(!column_winner && !row_winner && !diaganol_winner && is_full) {
+    winner = "C";
+    return true;
+  }
+
+  return false;
+}
+
 
 bool Game::check_board_full() {
   bool is_full = true;
@@ -58,4 +87,109 @@ void Game::display_board() const {
 
   }
 
+}
+
+bool Game::check_column_win() {
+
+  bool win = false;
+  //column positions 0,3,6
+  if (pegs[0] == "X" && pegs[3] == "X" && pegs[6] == "X") {
+    win = true;
+    return win;
+  }
+
+  if (pegs[0] == "O" && pegs[3] == "O" && pegs[6] == "O") {
+    win = true;
+    return win;
+  }
+
+  // COLUMN POSITIONS 1,4,7
+   if (pegs[1] == "X" && pegs[4] == "X" && pegs[7] == "X") {
+    win = true;
+    return win;
+  }
+   if (pegs[1] == "O" && pegs[4] == "O" && pegs[7] == "O") {
+    win = true;
+    return win;
+  }
+
+  //COLUMN POSITIONS 2,5,8
+ if (pegs[2] == "X" && pegs[5] == "X" && pegs[8] == "X") {
+    win = true;
+    return win;
+  }
+
+  if (pegs[2] == "O" && pegs[5] == "O" && pegs[8] == "O") {
+    win = true;
+    return win;
+  }
+
+  return win;
+
+}
+
+bool Game::check_row_win() {
+  // ROW POSITIONS 0, 1, 2
+  bool win = false;
+
+  if (pegs[0] == "X" && pegs[1] == "X" && pegs[2] == "X") {
+    win = true;
+    return win;
+  }
+  
+  if (pegs[0] == "O" && pegs[1] == "O" && pegs[2] == "O") {
+    win = true;
+    return win;
+  }
+
+  // ROW POSITIONS 3,4,5
+  if (pegs[3] == "X" && pegs[4] == "X" && pegs[5] == "X") {
+    win = true;
+    return win;
+  }
+
+  if (pegs[3] == "O" && pegs[4] == "O" && pegs[5] == "O") {
+    win = true;
+    return win;
+  }
+
+  // ROW POSITIONS 6,7,8 (7,8,9 visually)
+  if (pegs[6] == "X" && pegs[7] == "X" && pegs[8] == "X") {
+    win = true;
+    return win;
+  }
+  if (pegs[6] == "O" && pegs[7] == "O" && pegs[8] == "O") {
+    win = true;
+    return win;
+  }
+
+  return win;
+
+}
+
+bool Game::check_diagonal_win(){
+  bool win = false;
+  // POSITIONS 0,4,8 (1,5,9 visually)
+  if (pegs[0] == "X" && pegs[4] == "X" && pegs[8] == "X") {
+    win = true;
+    return win;
+  }
+  if (pegs[0] == "O" && pegs[4] == "O" && pegs[8] == "O") {
+    win = true;
+    return win;
+  }
+
+  // POSITIONS 2,4,6 (7,5,3 visually)
+
+  if (pegs[2] == "X" && pegs[4] == "X" && pegs[6] == "X") {
+    win = true;
+    return win;
+  }
+
+  if (pegs[2] == "O" && pegs[4] == "O" && pegs[6] == "O") {
+    win = true;
+    return win;
+  }
+
+  return win;
 }

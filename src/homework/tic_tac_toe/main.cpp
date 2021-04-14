@@ -7,7 +7,7 @@ using std::string;
 
 int main() 
 {
-	Game game;
+	TicTacToe game;
 	string player;
 	int position;
 	do { 
@@ -28,7 +28,6 @@ int main()
 
 			game.start_game(player);
 			game.display_board();
-
 
 			bool keep_playing = true;
 

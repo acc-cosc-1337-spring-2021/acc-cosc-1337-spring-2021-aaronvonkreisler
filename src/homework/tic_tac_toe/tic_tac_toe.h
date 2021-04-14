@@ -5,18 +5,21 @@
 using std::string;
 using std::vector;
 
-class Game {
+class TicTacToe {
   public:
     
     bool game_over();
     void start_game(string first_player);
     void mark_board(int position);
     string get_player() const{return player;}
+    //TODO: remove display_board
     void display_board()const;
     string get_winner() {
       return winner;
     }
-    
+    friend std::ostream& operator<<(std::ostream& out, const TicTacToe& game);
+    friend std::istream& operator>>(std::istream& in, TicTacToe& game);
+   
 
   private:
     vector<string> pegs {9, " "};

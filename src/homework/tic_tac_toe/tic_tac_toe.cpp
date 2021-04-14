@@ -5,13 +5,13 @@
 using std::cout;
 
 
-void Game::clear_board() {
+void TicTacToe::clear_board() {
   for (std::size_t i=0; i < pegs.size(); ++i) {
     pegs[i] = " ";
   }
 }
 
-void Game::set_winner(){
+void TicTacToe::set_winner(){
   if (player == "X") {
     winner = "O";
   } else {
@@ -19,7 +19,7 @@ void Game::set_winner(){
   }
 }
 
-bool Game::game_over() {
+bool TicTacToe::game_over() {
 
   bool column_winner = this -> check_column_win();
   bool row_winner = this -> check_row_win();
@@ -41,7 +41,7 @@ bool Game::game_over() {
 }
 
 
-bool Game::check_board_full() {
+bool TicTacToe::check_board_full() {
   bool is_full = true;
 
   for (std::size_t i = 0; i < pegs.size(); ++i) {
@@ -54,13 +54,13 @@ bool Game::check_board_full() {
   return is_full;
 }
 
-void Game::start_game(string first_player) {
+void TicTacToe::start_game(string first_player) {
   player = first_player;
   this -> clear_board();
 }
 
 
-void Game::set_next_player(){
+void TicTacToe::set_next_player(){
   if (player == "X")
     player = "O";
   else  
@@ -68,13 +68,13 @@ void Game::set_next_player(){
 }
 
 
-void Game::mark_board(int position) {
+void TicTacToe::mark_board(int position) {
   pegs[position - 1] = this ->player;
 
   this -> set_next_player();
 }
 
-void Game::display_board() const {
+void TicTacToe::display_board() const {
   //print lines 
 
   for (int j = 0; j < 9; ++j) {
@@ -89,7 +89,7 @@ void Game::display_board() const {
 
 }
 
-bool Game::check_column_win() {
+bool TicTacToe::check_column_win() {
 
   bool win = false;
   //column positions 0,3,6
@@ -128,7 +128,7 @@ bool Game::check_column_win() {
 
 }
 
-bool Game::check_row_win() {
+bool TicTacToe::check_row_win() {
   // ROW POSITIONS 0, 1, 2
   bool win = false;
 
@@ -167,7 +167,7 @@ bool Game::check_row_win() {
 
 }
 
-bool Game::check_diagonal_win(){
+bool TicTacToe::check_diagonal_win(){
   bool win = false;
   // POSITIONS 0,4,8 (1,5,9 visually)
   if (pegs[0] == "X" && pegs[4] == "X" && pegs[8] == "X") {

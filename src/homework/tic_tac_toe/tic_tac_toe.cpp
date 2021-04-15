@@ -1,7 +1,6 @@
 //cpp
 #include "tic_tac_toe.h"
 #include <iostream>
-
 using std::cout;
 
 
@@ -74,23 +73,26 @@ void TicTacToe::mark_board(int position) {
   this -> set_next_player();
 }
 
-void TicTacToe::display_board() const {
-  //print lines 
-
-  for (int j = 0; j < 9; ++j) {
-  cout<<"|"<< j + 1;
-  cout<<"  "<<pegs[j];
-  cout<<"______"<<" |";
-  if ((j + 1) % 3 == 0) {
-    cout<< "\n";
+std::ostream& operator<<(std::ostream& out, const TicTacToe& game) {
+  for (int i = 0; i < 9; ++i) {
+    out<<"|"<< i + 1;
+    out<<"  "<<game.pegs[i];
+    out<<"______"<<" |";
+    if ((i + 1) % 3 == 0) {
+      out<< "\n";
+    }
   }
+  return out;
+}
 
-  }
-
+std::istream& operator>>(std::istream& in, TicTacToe& game) {
+  int position;
+  in >> position;
+  game.mark_board(position);
+  return in;
 }
 
 bool TicTacToe::check_column_win() {
-
   bool win = false;
   //column positions 0,3,6
   if (pegs[0] == "X" && pegs[3] == "X" && pegs[6] == "X") {

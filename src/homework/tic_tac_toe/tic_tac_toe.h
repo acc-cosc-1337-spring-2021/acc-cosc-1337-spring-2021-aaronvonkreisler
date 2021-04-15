@@ -1,6 +1,8 @@
 //h
 #include <vector>
 #include <string>
+#include <iostream>
+
 
 using std::string;
 using std::vector;
@@ -12,8 +14,6 @@ class TicTacToe {
     void start_game(string first_player);
     void mark_board(int position);
     string get_player() const{return player;}
-    //TODO: remove display_board
-    void display_board()const;
     string get_winner() {
       return winner;
     }

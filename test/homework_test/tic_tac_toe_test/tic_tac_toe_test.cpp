@@ -1,6 +1,6 @@
 #define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
-#include "tic_tac_toe.h"
+#include "tic_tac_toe_manager.h"
 
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
@@ -50,15 +50,11 @@ TEST_CASE("Test first player set to O") {
 TEST_CASE("Test win by first column -- positions 1, 4, 7 [0, 3, 6]") {
 	TicTacToe game;
 	game.start_game("X");
-	 //x
 	game.mark_board(1);
-	 // o
 	game.mark_board(7);
  		//x
 	game.mark_board(4);
-	  // o
 	game.mark_board(5);
-	 //x
 	game.mark_board(7);
 	
 	REQUIRE(game.game_over() == true);
@@ -67,15 +63,11 @@ TEST_CASE("Test win by first column -- positions 1, 4, 7 [0, 3, 6]") {
 TEST_CASE("Test win by second column -- positions 2,5,8") {
 	TicTacToe game;
 	game.start_game("X");
-	 //x
 	game.mark_board(2);
-	 // o
 	game.mark_board(7);
  		//x
 	game.mark_board(5);
-	  // o
 	game.mark_board(9);
-	 //x
 	game.mark_board(8);
 	
 	REQUIRE(game.game_over() == true);
@@ -84,15 +76,10 @@ TEST_CASE("Test win by second column -- positions 2,5,8") {
 TEST_CASE("Test win by third column -- positions 3,6,9") {
 	TicTacToe game;
 	game.start_game("X");
-	 //x
 	game.mark_board(3);
-	 // o
 	game.mark_board(1);
- 		//x
 	game.mark_board(6);
-	  // o
 	game.mark_board(2);
-	 //x
 	game.mark_board(9);
 	
 	REQUIRE(game.game_over() == true);
@@ -101,15 +88,10 @@ TEST_CASE("Test win by third column -- positions 3,6,9") {
 TEST_CASE("Test win by first row -- positions 1, 2, 3") {
 	TicTacToe game;
 	game.start_game("X");
-	 //x
 	game.mark_board(1);
-	 // o
 	game.mark_board(9);
- 		//x
 	game.mark_board(2);
-	  // o
 	game.mark_board(8);
-	 //x
 	game.mark_board(3);
 	
 	REQUIRE(game.game_over() == true);
@@ -118,15 +100,10 @@ TEST_CASE("Test win by first row -- positions 1, 2, 3") {
 TEST_CASE("Test win by second row -- positions 4, 5, 6") {
 	TicTacToe game;
 	game.start_game("X");
-	 //x
 	game.mark_board(4);
-	 // o
 	game.mark_board(9);
- 		//x
 	game.mark_board(5);
-	  // o
 	game.mark_board(8);
-	 //x
 	game.mark_board(6);
 	
 	REQUIRE(game.game_over() == true);
@@ -135,15 +112,10 @@ TEST_CASE("Test win by second row -- positions 4, 5, 6") {
 TEST_CASE("Test win by third row -- positions 7,8,9") {
 	TicTacToe game;
 	game.start_game("X");
-	 //x
 	game.mark_board(7);
-	 // o
 	game.mark_board(2);
- 		//x
 	game.mark_board(8);
-	  // o
 	game.mark_board(4);
-	 //x
 	game.mark_board(9);
 	
 	REQUIRE(game.game_over() == true);
@@ -152,15 +124,10 @@ TEST_CASE("Test win by third row -- positions 7,8,9") {
 TEST_CASE("Test win diagonally from top left (positions 1, 5, 9) ") {
 	TicTacToe game;
 	game.start_game("X");
-	 //x
 	game.mark_board(1);
-	 // o
 	game.mark_board(2);
- 		//x
 	game.mark_board(5);
-	  // o
 	game.mark_board(4);
-	 //x
 	game.mark_board(9);
 	
 	REQUIRE(game.game_over() == true);
@@ -170,16 +137,48 @@ TEST_CASE("Test win diagonally from top left (positions 1, 5, 9) ") {
 TEST_CASE("Test win diagonally from bottom left (positions 7,5,3) ") {
 	TicTacToe game;
 	game.start_game("X");
-	 //x
 	game.mark_board(7);
-	 // o
 	game.mark_board(2);
- 		//x
 	game.mark_board(5);
-	  // o
 	game.mark_board(4);
-	 //x
 	game.mark_board(3);
 	
 	REQUIRE(game.game_over() == true);
+ }
+
+ TEST_CASE("Test TicTacToeManager") {
+	TicTacToeManager manager;
+	TicTacToe game;
+
+	game.start_game("X");
+	game.mark_board(7);
+	game.mark_board(2);
+	game.mark_board(5);
+	game.mark_board(4);
+	game.mark_board(3);
+	REQUIRE(game.game_over() == true);
+	manager.save_game(game);
+
+	game.start_game("X");
+	game.mark_board(7);
+	game.mark_board(2);
+	game.mark_board(5);
+	game.mark_board(4);
+	game.mark_board(3);
+	REQUIRE(game.game_over() == true);
+	manager.save_game(game);
+
+	game.start_game("X");
+	game.mark_board(7);
+	game.mark_board(2);
+	game.mark_board(5);
+	game.mark_board(4);
+	game.mark_board(3);
+
+	REQUIRE(game.game_over() == true);
+	manager.save_game(game);
+	
+	int x, o, t;
+	manager.get_winner_total(o, x, t);
+	REQUIRE(x == 3);
  }

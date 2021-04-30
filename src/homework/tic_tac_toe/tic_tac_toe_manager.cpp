@@ -2,6 +2,19 @@
 #include "tic_tac_toe_manager.h"
 #include <iostream>
 
+TicTacToeManager::~TicTacToeManager() {
+  std::cout<<"\nSave games \n";
+  data.save_games(games);
+}
+
+TicTacToeManager::TicTacToeManager(TicTacToeData d): data{d} {
+  games = data.get_games();
+
+  for (auto& game: games) {
+    update_winner_count(game ->get_winner());
+  }
+}
+
 void TicTacToeManager::update_winner_count(string winner) {
   if (winner == "X") {
     x_win++;

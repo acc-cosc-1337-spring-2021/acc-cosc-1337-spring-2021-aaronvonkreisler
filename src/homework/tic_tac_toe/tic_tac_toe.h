@@ -15,9 +15,11 @@ class TicTacToe {
   friend std::ostream& operator<<(std::ostream& out, const TicTacToe& game);
   friend std::istream& operator>>(std::istream& in, TicTacToe& game);
 
+  //TODO: Step 1.b add const function
   public:
     TicTacToe();
     TicTacToe(int size): pegs(size * size, " "){};
+    TicTacToe(vector<string> p, string win): pegs(p){};
     bool game_over();
     void start_game(string first_player);
     void mark_board(int position);
@@ -25,6 +27,7 @@ class TicTacToe {
     string get_winner() {
       return winner;
     }
+    vector<string> get_pegs() const {return pegs;}
 
    
   protected:

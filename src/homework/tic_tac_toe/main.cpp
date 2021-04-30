@@ -1,6 +1,7 @@
 #include "tic_tac_toe_manager.h"
 #include "tic_tac_toe_3.h"
 #include "tic_tac_toe_4.h"
+#include "tic_tac_toe_data.h"
 #include<memory>
 using std::unique_ptr; using std::make_unique;
 
@@ -15,7 +16,8 @@ int main()
 	int o_win = 0;
 	int x_win = 0;
 	int tie = 0;
-	TicTacToeManager manager;
+	TicTacToeData data;
+	TicTacToeManager manager(data);
 
 		cout<<"----------------------------------------------------\n\n";
 		cout<<"Welcome to tic tac toe.\n";
